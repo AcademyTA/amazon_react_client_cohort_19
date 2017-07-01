@@ -14,9 +14,9 @@ class ProductShow extends Component {
   }
 
   componentDidMount() {
-    getProduct(this.props.id).then(product => {
-      this.setState({ product });
-    });
+    const id = this.props.match.params.id
+
+    getProduct(id).then(product => this.setState({ product }));
   }
 
   render() {
@@ -28,7 +28,7 @@ class ProductShow extends Component {
           { product.title }
         </h2>
         <p>
-          { product.body }
+          { product.description }
         </p>
         <p>
           <strong>Author:</strong> { product.seller }

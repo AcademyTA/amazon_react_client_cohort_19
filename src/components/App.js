@@ -1,41 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 import ProductIndex from './ProductIndex';
 import ProductShow  from './ProductShow';
 
 import '../App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      productId: null
-    }
-
-    this.goToProduct = this.goToProduct.bind(this);
-  }
-
-  goToProduct(id) {
-    this.setState({ productId: id });
-  }
-
-  render() {
-    let template
-
-    if (this.state.productId) {
-      template = <ProductShow id={ this.state.productId }/>
-    } else {
-      template = <ProductIndex onProductClick={ this.goToProduct }/>
-    }
-
-    return (
-      <div className="App">
-        <h1>Amazon React Client</h1>
-        { template }
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <Route exact path="/" component={ ProductIndex } />
+      <Route path="/products/:id" component={ ProductShow } />
+    </div>
+  </Router>
+)
 
 export default App;

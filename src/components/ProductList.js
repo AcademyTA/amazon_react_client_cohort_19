@@ -1,19 +1,15 @@
-import React from 'react';
+import React    from 'react';
+import { Link } from 'react-router-dom';
 
 function ProductItem(props) {
-
-  const handleClick = event => {
-    props.onClick(props.id)
-  }
-
   return (
-    <div onClick={ handleClick }>
-      { props.title }
+    <div>
+      <Link to={`/products/${props.id}`}>{ props.title }</Link>
     </div>
   )
 }
 
-function ProductList({ products = [], onProductClick = () => {} }) {
+function ProductList({ products = [] }) {
   return (
     <div>
       {
@@ -21,7 +17,6 @@ function ProductList({ products = [], onProductClick = () => {} }) {
           return (
             <ProductItem
               key={ product.id }
-              onClick={ onProductClick }
               { ...product }
             />
           )
