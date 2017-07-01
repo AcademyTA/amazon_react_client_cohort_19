@@ -23,7 +23,10 @@ class ProductIndex extends Component {
     return (
       <div>
         <h3>All Products</h3>
-        <ProductList products={ this.state.products }/>
+        <ProductList
+          products={ this.state.products }
+          onProductClick={ this.props.onProductClick }
+        />
       </div>
     );
   }
